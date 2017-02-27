@@ -1,0 +1,12 @@
+{
+  "name": "electron-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "node-integration": false,
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC"
+}

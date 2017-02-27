@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Time Tracker</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Multi-platform time tracker">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="Time Tracker">
+        <meta name="msapplication-TileImage" content="images/favicon.png">
+        <meta name="msapplication-TileColor" content="#3372DF">
+        <link rel="apple-touch-icon-precomposed" href="images/favicon.png">
+        <link rel="icon" sizes="192x192" href="images/favicon.png">
+        <link rel="shortcut icon" href="images/favicon.png">
+        <link rel="stylesheet" href="mdl/material.css">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+        <div class="loader mdl-color--blue-90">
+            <div class="mdl-spinner mdl-js-spinner is-active"></div>
+        </div>
+        <div id="main-layout" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <section id="display_getUrl" class='display_content'>
+                <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col"><h4>Time Tracker</h4></div>
+                    </div>  
+                </header>
+                <main class="mdl-layout__content">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <form id='form_getUrl' action="" method="POST">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="input_url" name="input_url">
+                                    <label class="mdl-textfield__label" for="input_url">URL (http://url.extension)</label>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="input_remember">
+                                        <input type="checkbox" id="input_remember" class="mdl-checkbox__input">
+                                        <span class="mdl-checkbox__label">Remember</span>
+                                    </label>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <button id='btn_checkUrl' class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                        Check
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>  
+                </main>
+            </section>
+            <section id="display_login" class='display_content hidden'>
+                <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+                  <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col"><h4>Time Tracker</h4></div>
+                  </div>  
+                </header>
+                <main class="mdl-layout__content">
+                  <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+                      <form id='form_login' action="" method="POST">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded">
+                          <input class="mdl-textfield__input" type="text" id="input_username" name="input_username">
+                          <label class="mdl-textfield__label" for="input_username">Username</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                          <span for="input_password" data-cmd="show-password" class="material-icons show_password">visibility</span>
+                          <input class="mdl-textfield__input" type="password" id="input_password" name="input_password">
+                          <label class="mdl-textfield__label" for="input_password">Password</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded">
+                        <br/>
+                          <input type='submit' name='btn_submit' value="Log in" id='btn_login' class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" />
+                        </div>
+                      </form>
+                    </div>
+                  </div>  
+                </main>            
+            </section>
+            <section id="display_timetracker" class='display_content hidden'>
+                <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+                    <div class="mdl-grid no-margin" style="width: 95% !important;"> 
+                        <div class="mdl-cell mdl-cell--1-col no-margin">
+                            <img src='images/favicon.png' height="50px" width="50px" />
+                        </div>
+                        <div class="mdl-cell mdl-cell--3-col no-margin">
+                            <span id='display_Name'>Name N. Name</span><br/>
+                            <span id='display_Position'>Position</span>
+                        </div>
+                    </div>
+                </header>
+                <div class="mdl-layout__tab-panel is-active" id="overview">
+                  <section class="section--center mdl-grid mdl-grid--no-spacing">
+                    <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                        <div class="mdl-grid no-margin">
+                            <div class="mdl-cell mdl-cell--3-col no-margin">
+                                <h3>
+                                    <span id='timer'>00:00:00</span>
+                                </h3>
+                            </div>
+                            <div class="mdl-cell mdl-cell--1-col no-margin">
+                                <h3>
+                                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events is-upgraded" for="input_startTimer" data-upgraded=",MaterialSwitch,MaterialRipple">
+                                      <input type="checkbox" id="input_startTimer" class="mdl-switch__input">
+                                      <span class="mdl-switch__label"></span>
+                                    <div class="mdl-switch__track"></div><div class="mdl-switch__thumb"><span class="mdl-switch__focus-helper"></span></div><span class="mdl-switch__ripple-container mdl-js-ripple-effect mdl-ripple--center" data-upgraded=",MaterialRipple"><span class="mdl-ripple"></span></span></label>
+                                </h3>
+                            </div>
+                            <p>
+                                Working on: <span id='display_Job'>Not assigned</span><br/>
+                                Hours worked: <span id='display_Hours'>0hr</span>
+                            </p>
+                        </div>
+                    </div>
+                    <header id="screenCapture" class='mdl-card'>
+                      <i class="material-icons">play_circle_filled</i>
+                    </header>
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-button--colored mdl-button--accent" id="btn_menu">
+                      <i class="material-icons">more_vert</i>
+                    </button>
+                  </section>
+                </div>
+            </section>
+        </div>
+        <div aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">    
+            <div class="mdl-snackbar__text"></div>
+            <button type="button" class="mdl-snackbar__action"></button>
+        </div>  
+
+        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn_menu">
+            <li class="mdl-menu__item" data-cmd="logout">Log Out</li>
+            <li class="mdl-menu__item" data-cmd="forgetUrl">Forget URL</li>
+            <li class="mdl-menu__item" data-cmd="minimize">Minimize</li>
+            <li class="mdl-menu__item" data-cmd="exit">Exit</li>
+        </ul>
+    </body>
+    <script>
+        if (typeof module === 'object'){window.module = module; module = undefined;}
+        if (window.module) module = window.module;
+        window.$ = window.jQuery = require('./js/jquery.min.js');
+    </script>
+    <script src="mdl/material.min.js"></script>
+    <script src="js/timer.jquery.js"></script>
+    <script src="js/captureVideo.js"></script>
+    <script src="js/getScreenId.js"></script>
+    <script src="js/screen.js"></script>  
+    <script src="js/firebase.js"></script>
+    <script src="js/validate.js"></script>
+    <script src="js/process.js"></script>
+    <script type="text/javascript">
+        process.ini();  
+    </script>
+</html>
